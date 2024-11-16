@@ -24,6 +24,8 @@ var (
 	dnsServerFlag = flag.String("dns", "",
 		"ip:port of DNS server")
 	dnsZoneFlag = flag.String("zone", "", "dns zone name")
+	// Adding optional protocol flag to specify protocol to use
+	protocolFlag = flag.String("protocol", "", "optional: tcp or udp (default)")
 )
 
 func main() {
@@ -63,6 +65,7 @@ func main() {
 		defer close(done)
 		dnsClient := &dns.Client{
 			Timeout: time.Second * 5,
+			Net:     *protocolFlag, // Inserting string value of protocol flag if present to indicate udp, tcp, etc.
 		}
 		for _, peer := range wgDevice.Peers {
 			select {
