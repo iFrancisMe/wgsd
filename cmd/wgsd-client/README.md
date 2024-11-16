@@ -10,4 +10,6 @@ Usage of ./wgsd-client:
     	ip:port of DNS server
   -zone string
     	dns zone name
+  -protocol string (optional)
+      udp (default) or tcp
 ```
